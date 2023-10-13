@@ -23,38 +23,55 @@
     }
   },
   "intents" : [ {
-    "path" : "/пароль",
-    "answer" : "Сейчас расскажу порядок действия.\nВыберите, что именно планируете сделать:\n1) Поменять пароль для входа в приложение.\n2) Поменять PIN-код для карты.",
+    "path" : "/приложение",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "пароль"
+      "text" : "изменить данные для входа"
     }, {
-      "text" : "пинкод"
+      "text" : "поменять пин для приложения"
     }, {
-      "text" : "пин"
+      "text" : "поменять пинкод для входа"
     }, {
-      "text" : "пин-код"
+      "text" : "прил"
     }, {
-      "text" : "изменить пинкод"
+      "text" : "приложение"
     }, {
-      "text" : "поменять пинкод"
+      "text" : "для приложения"
     }, {
-      "text" : "поменять пароль"
-    }, {
-      "text" : "хочу поменять пинкод"
+      "text" : "1"
     } ],
     "classificationRules" : {
       "refs" : [ {
-        "entityName" : "classRule_6801",
-        "predicate" : "CONTAINS"
-      }, {
-        "entityName" : "classRule_4669",
+        "entityName" : "Приложение",
         "predicate" : "CONTAINS"
       } ]
     },
     "patterns" : [ ],
-    "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/пароль",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "поменять пароль"
+    }, {
+      "text" : "изменить пинкод"
+    }, {
+      "text" : "сменить данные "
+    }, {
+      "text" : "изменить пин"
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "Пароль",
+        "predicate" : "CONTAINS"
+      }, {
+        "entityName" : "classRule_3045",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
     "priority" : 0
   }, {
     "path" : "/пока",
@@ -94,72 +111,35 @@
     },
     "priority" : 0
   }, {
-    "path" : "/пароль/приложение",
-    "answer" : "",
+    "path" : "/карта",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "логин"
+      "text" : "Карты"
     }, {
-      "text" : "данные"
+      "text" : "данные для карты"
     }, {
-      "text" : "входа"
+      "text" : "пароль для карты"
     }, {
-      "text" : "в приложение"
-    }, {
-      "text" : "пинкод для приложения"
-    }, {
-      "text" : "пароль для приложения"
-    }, {
-      "text" : "пароль для входа"
-    }, {
-      "text" : "хочу поменять пинкод для приложения"
-    }, {
-      "text" : "хочу поменять пин-код для приложения"
-    } ],
-    "classificationRules" : {
-      "refs" : [ {
-        "entityName" : "classRule_5190",
-        "predicate" : "CONTAINS"
-      }, {
-        "entityName" : "Приложение",
-        "predicate" : "CONTAINS"
-      } ]
-    },
-    "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/пароль/карта",
-    "answer" : "",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "пинкод для кредитки"
-    }, {
-      "text" : "пинкод для дебетовки"
+      "text" : "пин для карты"
     }, {
       "text" : "пинкод для карты"
     }, {
-      "text" : "пароль для карты"
+      "text" : "пин-код для карты"
+    }, {
+      "text" : "2"
     }, {
       "text" : "для карты"
     }, {
-      "text" : "пин карты"
-    }, {
-      "text" : "пароль для карты"
+      "text" : "карта"
     } ],
     "classificationRules" : {
       "refs" : [ {
-        "entityName" : "classRule_4079",
-        "predicate" : "CONTAINS"
-      }, {
         "entityName" : "Карта",
         "predicate" : "CONTAINS"
       } ]
     },
     "patterns" : [ ],
-    "slots" : [ ],
     "priority" : 0
   } ],
   "entities" : [ {
@@ -172,51 +152,13 @@
       "noSpelling" : true,
       "noMorph" : false,
       "phoneticSearch" : false,
-      "fuzzySearch" : false,
+      "fuzzySearch" : true,
       "client" : true,
       "hidden" : false
     },
     "records" : [ {
       "type" : "pattern",
-      "rule" : [ "(прил* | логин | *ход*)" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "classRule_5190",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : false,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : true
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "логин", "приложение", "Открытие Банк", "вход", "данные" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "classRule_4669",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : false,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : true
-    },
-    "records" : [ {
-      "type" : "pattern",
-      "rule" : [ "(парол* | данн* | пин | код | пинкод | пин-код)" ],
+      "rule" : [ "(прил* | логин | *ход*|1)" ],
       "value" : ""
     } ]
   }, {
@@ -229,32 +171,13 @@
       "noSpelling" : true,
       "noMorph" : false,
       "phoneticSearch" : false,
-      "fuzzySearch" : false,
+      "fuzzySearch" : true,
       "client" : true,
       "hidden" : false
     },
     "records" : [ {
       "type" : "pattern",
-      "rule" : [ "(дебет* | кредит* | карт* ) " ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "classRule_6801",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : false,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : true
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "пароль", "пин", "код", "пинкод" ],
+      "rule" : [ "(дебет* | кредит* | карт*|2) " ],
       "value" : ""
     } ]
   }, {
@@ -273,12 +196,12 @@
     },
     "records" : [ {
       "type" : "synonyms",
-      "rule" : [ "Пинкод", "Пин", "Код", "Пароль", "Изменить", "поменять" ],
+      "rule" : [ "пинкод", "пин", "код", "пароль", "*меня*" ],
       "value" : ""
     } ]
   }, {
     "entity" : {
-      "name" : "classRule_4079",
+      "name" : "classRule_3045",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
@@ -292,7 +215,7 @@
     },
     "records" : [ {
       "type" : "pattern",
-      "rule" : [ "(карт* | дебет* | кредит* )" ],
+      "rule" : [ "(пароль|данные|пин*)" ],
       "value" : ""
     } ]
   } ],
