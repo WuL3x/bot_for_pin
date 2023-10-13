@@ -2,16 +2,12 @@ require: slotfilling/slotFilling.sc
   module = sys.zb-common
 require: functions.js
 
-patterns:
-    $app = (прило*)
-    $card = (карт)
-
 theme: /
-
+    
     state: Start
         q!: $regex</start>
         a: Начнем
-            
+  
 
     state: hello
         intent!: /привет
@@ -19,24 +15,15 @@ theme: /
 
 
     state: change || modal = true
-        intentGroup!: /пароль
         
-        script:
-            $session.text = $request.query;
-            # if ($session.text == "прило" || 1){
-            #     $reactions.transition("/.changeapp")
-            #     }
-            $reactions.answer($session.text)
 
         a: {{$request.query}}
-        if: $request.query = $app
+        if: $request.query == "1"
             go!: /change/changeapp
-        if: $request.query = $card
-            go!: /change/changeapp
+        if: $request.query == "2"
+            go!: /change/changecard
 
- 
-
-        state: changeapp
+        state: changeapp ||modal = true
             intent: /пароль/приложение
             a: Смена пароля от приложения возможна несколькими способами:
                     1. на экране "Профиль" выберите "Изменить код для входа в приложение".
@@ -45,7 +32,7 @@ theme: /
             script:
                 $reactions.timeout({interval: "2 seconds", targetState: "./secApp"})
                 
-            state: secApp
+            state: secApp ||modal = true
                 a: Либо нажмите на кнопку "Выйти" на старнице ввода пароля для входа в приложение.
                     После чего нужно будет заново пройти регистрацию:
                     1. ввести полный номер карты(если оформляли ранее, иначе номер телефона и дату рождения),
@@ -58,7 +45,7 @@ theme: /
                     a:Приятно было пообщаться. Всегда готов помочь вам снова!
                     
 
-        state: changecard
+        state: changecard || modal = true 
             intent: /пароль/карта
             a: Это можно сделать в приложении:
                 1. На экране "Мои деньги" в разделе "Карты" нажмите на нужную.
@@ -69,7 +56,7 @@ theme: /
             script:
                     $reactions.timeout({interval: "2 seconds", targetState: "./secCard"})  
                     
-            state: secCard
+            state: secCard ||modal = true
                 a: И все готово!
                     Пин-код установлен, можно пользоваться.
                 a: Приятно было пообщаться. Всегда готов помочь вам снова.
