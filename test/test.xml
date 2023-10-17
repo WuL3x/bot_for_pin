@@ -1,3 +1,10 @@
 <test>
-
+    <test-case>
+        <q>/Start</q>
+        <a state="/Start"/>
+        <q>* пароль*</q>
+        <a state="/change"/>
+        <q>(прил*|1)</q>
+        <a state="/changeapp"/>
+    </test-case>
 </test>
