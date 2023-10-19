@@ -2,8 +2,8 @@ require: slotfilling/slotFilling.sc
   module = sys.zb-common
 
 patterns:
-    $app = (прил* | 1 | логин* | *ход* | *Pin*)
-    $card = (([для] карт* )| 2 | дебет* | *Pin*)
+    $app = ((прил* | 1 | логин* | *ход* | *Pin*)*~приложение)
+    $card = (((([для] карт* )| 2 | дебет* | *Pin*)*~карта) *)
     $password = (* (парол* | пин*))
 
 
