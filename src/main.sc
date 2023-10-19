@@ -1,17 +1,16 @@
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
-require: functions.js
 
 patterns:
-    $hello = (привет | добр* (утро/день/вечер) | здравствуй*)
-    $app = (прил* | 1 | логин* | *ход*)
-    $card = (([для] карт* )| 2 | дебет*)
+    $app = (прил* | 1 | логин* | *ход* | *Pin*)
+    $card = (([для] карт* )| 2 | дебет* | *Pin*)
     $password = (* (парол* | пин*))
+
 
 theme: /
     
     state: Start
-        q!: $regex</start>
+        q!: *start
         a: Начнем
 
     state: change || modal = true
@@ -20,7 +19,7 @@ theme: /
                 1) Поменять пароль для входа в приложение. 
                 2) Поменять PIN-код для карты.
         script:
-            $reactions.timeout({interval: "5 seconds", targetState: "/Bye"})
+            $reactions.timeout({interval: "5 seconds", targetState: "/NoAnswer"})
 
         state: app
             q: {{$app}}
@@ -52,12 +51,8 @@ theme: /
                 2. указать код из смс-код,
                 3. придумать нвоый пароль для входа.
             script:
-                $reactions.timeout({interval: "2 seconds", targetState: './thrApp'})
-                
-            state: thrApp
-                a:Приятно было пообщаться. Всегда готов помочь вам снова!
-                script:
-                    $reactions.timeout({interval: "2 seconds", targetState: '/Bye'})  
+                $reactions.timeout({interval: "2 seconds", targetState: '/Bye'})
+
                     
 
     state: changecard 
@@ -74,12 +69,15 @@ theme: /
         state: secCard 
             a: И все готово!
                 Пин-код установлен, можно пользоваться.
-            a: Приятно было пообщаться. Всегда готов помочь вам снова.
             script:
-                $reactions.timeout({interval: "2 seconds", targetState: '/Bye'})  
+                $reactions.timeout({interval: "2 seconds", targetState: '/Bye'})
+    
+
     state: Bye
-        intent!: /пока
-        a: Пока пока
+        a: Приятно было пообщаться. Всегда готов помочь вам снова.
+    
+    state: NoAnswer
+        a: Не получил от вас ответа. Всего хорошего!
 
     state: NoMatch
         event!: noMatch

@@ -101,19 +101,6 @@
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/KnowledgeBase/FAQ.Пустой шаблон FAQ/Root/Новый вопрос",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "New question"
-    }, {
-      "text" : "Новый вопрос"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
     "path" : "/карта",
     "enabled" : true,
     "shared" : false,
@@ -327,13 +314,6 @@
     "name" : "zb.number",
     "enabled" : false
   } ],
-  "faq" : [ {
-    "intentPath" : "/KnowledgeBase/FAQ.Пустой шаблон FAQ/Root/Новый вопрос",
-    "replies" : [ {
-      "type" : "text",
-      "text" : "",
-      "markup" : "plain"
-    } ]
-  } ],
+  "faq" : [ ],
   "skills" : [ ]
 }
