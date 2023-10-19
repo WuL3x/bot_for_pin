@@ -1,25 +1,3 @@
-{
-  "project" : {
-    "id" : "taskopenbank-1000093476-FWk",
-    "name" : "taskopenbank-1000093476-FWk",
-    "folder" : "/platform"
-  },
-  "settings" : {
-    "language" : "ru",
-    "spellingCorrection" : false,
-    "classificationAlgorithm" : "sts",
-    "timezone" : "Europe/Moscow",
-    "extendedSettings" : {
-      "tokenizerEngine" : "mystem",
-      "useShared" : false
-    },
-    "shared" : false,
-    "validation" : {
-      "phraseValidationEnabled" : true,
-      "answerValidationEnabled" : true,
-      "phraseValidationThreshold" : 0.5,
-      "answerValidationThreshold" : 0.8
-    }
   }, "intents" : [ {
     "path" : "/приложение",
     "enabled" : true,
